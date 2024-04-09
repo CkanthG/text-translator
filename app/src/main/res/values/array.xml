@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="spinnerItems">
+        <item>Choose Language To Translate</item>
+        <item>English</item>
+        <item>Telugu</item>
+        <item>Hindi</item>
+        <item>German</item>
+        <item>Italian</item>
+        <item>French</item>
+        <item>Tamil</item>
+    </string-array>
+    <string-array name="sourceSpinnerItems">
+        <item>Choose Language for Translation</item>
+        <item>English</item>
+        <item>Telugu</item>
+        <item>Hindi</item>
+        <item>German</item>
+        <item>Italian</item>
+        <item>French</item>
+        <item>Tamil</item>
+    </string-array>
+</resources>
