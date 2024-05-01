@@ -8,6 +8,7 @@ import android.widget.TextView
 import android.widget.Toast
 import com.google.gson.Gson
 import com.home.translator.trans.CallResponse
+import com.home.translator.trans.ErrorResponse
 import com.home.translator.trans.TextTranslation
 
 class MainActivity : AppCompatActivity() {
@@ -42,9 +43,14 @@ class MainActivity : AppCompatActivity() {
                 val response: CallResponse? = gson.fromJson(json, CallResponse::class.java)
                 val translatedText = response?.data?.translations?.get(0)?.translatedText
                 println("translatedText $translatedText")
-                // displaying a toast message
-                Toast.makeText(this@MainActivity, translatedText, Toast.LENGTH_LONG).show()
-                textView2.setText(translatedText)
+                if (translatedText != null) {
+                    Toast.makeText(this@MainActivity, translatedText, Toast.LENGTH_LONG).show()
+                    textView2.setText(translatedText)
+                } else {
+                    val resp: ErrorResponse = gson.fromJson(json, ErrorResponse::class.java)
+                    val status = resp.message
+                    Toast.makeText(this@MainActivity, status, Toast.LENGTH_LONG).show()
+                }
             }
         }
     }

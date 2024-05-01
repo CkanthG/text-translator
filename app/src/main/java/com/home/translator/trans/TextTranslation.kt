@@ -1,7 +1,5 @@
 package com.home.translator.trans
 
-import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import okhttp3.*
 import okio.IOException
 
@@ -35,7 +33,7 @@ class TextTranslation {
                 println(finalResponse)
             }
         })
-        println("Text Traslation Started")
+        println("Text Translation Started")
         Thread.sleep(5000)
         return finalResponse
     }
@@ -58,3 +56,5 @@ data class Translation(val translatedText: String)
 data class Data(val translations: List<Translation>)
 
 data class CallResponse(val data: Data)
+
+data class ErrorResponse(val message: String)
