@@ -1,4 +1,4 @@
-package com.home.translator.trans
+package com.home.translator.service
 
 import okhttp3.*
 import okio.IOException

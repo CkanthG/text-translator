@@ -1,17 +1,18 @@
 package com.home.translator
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.Gson
-import com.home.translator.trans.CallResponse
-import com.home.translator.trans.ErrorResponse
-import com.home.translator.trans.TextTranslation
+import com.home.translator.service.CallResponse
+import com.home.translator.service.ErrorResponse
+import com.home.translator.service.TextTranslation
 
-class MainActivity : AppCompatActivity() {
+
+class TranslationActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -26,9 +27,9 @@ class MainActivity : AppCompatActivity() {
             val targetSelectedLangauge = spinner.selectedItem.toString()
             val sourceSelectedLangauge = sourceSpinner.selectedItem.toString()
             if (sourceSelectedLangauge.equals("Choose Language for Translation")) {
-                Toast.makeText(this@MainActivity, "Choose Language for Translation", Toast.LENGTH_LONG).show()
+                Toast.makeText(this@TranslationActivity, "Choose Language for Translation", Toast.LENGTH_LONG).show()
             } else if (targetSelectedLangauge.equals("Choose Language To Translate")){
-                Toast.makeText(this@MainActivity, "Choose Language To Translation", Toast.LENGTH_LONG).show()
+                Toast.makeText(this@TranslationActivity, "Choose Language To Translation", Toast.LENGTH_LONG).show()
             } else {
                 val languageToTranslate =
                     textTranslation.languageMapping().get(targetSelectedLangauge)
@@ -44,12 +45,12 @@ class MainActivity : AppCompatActivity() {
                 val translatedText = response?.data?.translations?.get(0)?.translatedText
                 println("translatedText $translatedText")
                 if (translatedText != null) {
-                    Toast.makeText(this@MainActivity, translatedText, Toast.LENGTH_LONG).show()
+                    Toast.makeText(this@TranslationActivity, translatedText, Toast.LENGTH_LONG).show()
                     textView2.setText(translatedText)
                 } else {
                     val resp: ErrorResponse = gson.fromJson(json, ErrorResponse::class.java)
                     val status = resp.message
-                    Toast.makeText(this@MainActivity, status, Toast.LENGTH_LONG).show()
+                    Toast.makeText(this@TranslationActivity, status, Toast.LENGTH_LONG).show()
                 }
             }
         }
